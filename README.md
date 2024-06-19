@@ -1,0 +1,39 @@
+# 系统推荐
+Ubuntu 22 or 24
+
+
+# 参数说明
+- --file, 监控对象所在文件路径
+- --concurrent, 请求的最大并发数, 不填默认为 10
+- --token, telegram bot 的 token（BotFather获取）
+- --chat_id, telegram 发送对象的 id（Get_ID_bot获取）
+
+# 依赖
+python >= 3.7
+
+pip3 install requests
+
+# 操作说明
+## 上传文件
+将 check.py 上传至服务器 /data 目录下（没有 /data 目录则新建）
+## 整理监控对象
+将需要监控的 ip:port 整理到 /data 下的一个文件，如 /data/targets.txt，一个条目一行，支持动态域名(套CDN不可用)
+
+格式如下：
+```text
+google.com:10000
+youtube.com:20000
+1.1.1.1:30000
+2.2.2.2:40000
+3.3.3.3:50000
+```
+## 新建 cronjob
+cronjob 加入定时任务，定时策略自行决定，示例为每十分钟执行一次
+
+crontab -e
+
+```shell
+*/10 * * * * python3 /data/check.py --file /data/targets.txt --concurrent 10 --token xxxxx --id xxxxx >> /data/check.log
+```
+
+#### 可将 python3 替换为其绝对路径 which python3 查看
