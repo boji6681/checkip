@@ -35,5 +35,34 @@ crontab -e
 ```shell
 */10 * * * * python3 /data/check.py --file /data/targets.txt --concurrent 10 --token xxxxx --id xxxxx >> /data/check.log
 ```
+### 如何获取 id？
+
+浏览器中输入
+
+```bash
+https://api.telegram.org/bot{token}/getUpdates
+```
+
+把`{token}`替换成你自己的bot tonke
+
+显示：{
+“ok”: true,
+“result”: []
+}
+如果显示error，说明有错误
+
+在这其中找到 "chat":{"id":-10000000000,"title":"xxxx",
+
+### 如何检测 id是否正确？
+
+```bash
+curl -X POST "https://api.telegram.org/botXXX:YYYY/sendMessage" -d "chat_id=-zzzzzzzzzz&text=my sample text"
+```
+
+`XXX:YYYY` 替换成你的 bot tonke
+
+`-zzzzzzzzzz` 替换成刚刚获取到的id  注意是带`-`号
+
+
 
 #### 可将 python3 替换为其绝对路径 which python3 查看
