@@ -1,7 +1,6 @@
 # 系统推荐
 Ubuntu 22 or 24
 
-
 # 参数说明
 - --file, 监控对象所在文件路径
 - --concurrent, 请求的最大并发数, 不填默认为 10
@@ -64,5 +63,12 @@ curl -X POST "https://api.telegram.org/botXXX:YYYY/sendMessage" -d "chat_id=-zzz
 `-zzzzzzzzzz` 替换成刚刚获取到的id  注意是带`-`号
 
 
+#### 可将 python3 替换为其绝对路径 `which python3` 查看
 
-#### 可将 python3 替换为其绝对路径 which python3 查看
+### my
+
+```bash
+*/10 * * * * /usr/bin/python3 /serverslist/xx/check.py --file /serverslist/xx/xxtargets.txt --concurrent 10 --token telegrambottoken --id -chatid >> /serverslist/xx/xx.log
+```
+
+`/serverslist/xx/check.py` `/serverslist/xx/xxtargets.txt` `/serverslist/xx/xx.log`
